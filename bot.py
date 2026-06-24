@@ -679,7 +679,7 @@ def main() -> None:
     print("✅ Бот запущений!")
     print("Для зупинки натисни Ctrl+C.")
 
-    application.run_polling(drop_pending_updates=False)
+    application.run_polling(drop_pending_updates=True)
 
 
 if __name__ == "__main__":
