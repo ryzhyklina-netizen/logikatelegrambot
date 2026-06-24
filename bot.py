@@ -555,15 +555,17 @@ async def button_handler(
     context: ContextTypes.DEFAULT_TYPE,
 ) -> None:
     query = update.callback_query
-
-    if query is None or query.message is None:
+    
+    if query is None:
         return
 
     await query.answer()
 
-    data = query.data or ""
-    chat_id = query.message.chat_id
+    if query.message is None:
+        return
 
+    data = query.data or ""
+    chat_id = query.message.chat.id
     # Початок або повторне проходження тесту
     if data == "start_test":
         context.user_data.clear()
@@ -677,7 +679,7 @@ def main() -> None:
     print("✅ Бот запущений!")
     print("Для зупинки натисни Ctrl+C.")
 
-    application.run_polling(drop_pending_updates=True)
+    application.run_polling(drop_pending_updates=False)
 
 
 if __name__ == "__main__":
