@@ -21,7 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent
 IMAGES_DIR = BASE_DIR / "images"
 WELCOME_IMAGE = IMAGES_DIR / "main.png"
 
-load_dotenv(BASE_DIR / ".env")
+# load_dotenv(BASE_DIR / ".env")
+# BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+from dotenv import load_dotenv
+
+# тільки для локального запуску
+if (BASE_DIR / ".env").exists():
+    load_dotenv(BASE_DIR / ".env")
+
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 logging.basicConfig(
